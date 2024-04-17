@@ -197,10 +197,47 @@ for(j=0;j<15;j++)
     }
 }
 }
+// rt to lft dia  row>=col
+if(m>=n){
+  
+  count =1;
+for (int j=0;(m+n)-j>0;j++){
+   if((m+n)-j>15){
+        continue;
+    }
+    if (j+1>15){
+        break;
+    }
+  if(board[j][m+n-j]==board[j+1][m+n-j-1] && board[j][m+n-j]!=' ')
+    count++;
+  else count =1 ;
+    if(count == 5 ){
+     printf("count = %d \t",count);
+      return board[m][n];
+    }
+}}
+// rt to lft dia  row<col
+if(m<n){
+  count =1;
+  for (int j=0;(m+n)-j>0;j++){
+    if((m+n)-j>15){
+        continue;
+    }
+    if (j+1>15){
+        break;
+    }
+  if(board[m+n-j][j]==board[m+n-j-1][j+1] && board[m+n-j][j]!=' ')
+    count++;
+  else count =1 ;
+    if(count == 5 ){
+    //  printf("count = %d \t",count);
+      return board[m][n];
+    }
+      }
+
+} 
    return ' ';
 }
-
-
 //printing winner
 void PrintdaWinner(char winner)
 {
