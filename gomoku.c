@@ -1,15 +1,20 @@
 #include<stdio.h>
 #include<stdlib.h>
+#include<conio.h>
 //required consts and board
 char board[15][15];
 const char PLAYER1 = 'X';
 const char PLAYER2 = '0';
 // declared functions
+void gotoxy(int x,int y)
+{
+printf("%c[%d;%df",0x1B,y,x);
+}
+void loading();
 void ResetBoard();
 void PrintBoard();
 void Player1Move();
 void Player2Move();
-void BotMove();
 char CheckdaWinner();
 void PrintdaWinner(char);
 int CheckFreePlaces();
@@ -19,6 +24,7 @@ int n;
 //  main body
 int main()
 {
+  loading();
     char winner = ' ';
     ResetBoard();
     PrintBoard();
@@ -47,6 +53,14 @@ PrintdaWinner(winner);
     return 0;
 }
 
+//Loading Screen
+void loading(){
+  int i,j,l;
+    printf(" \n\t\t\t\t\t\t WELCOME TO GOMOKU\n");
+  printf(" \n\n\n\n\n\n\n\n\t\t\t\t\t\t Created by: \n\t\t\t\t\t\t Avignya Gautam \n\t\t\t\t\t\t Balram Sharma Kandel\n");
+  printf(" \n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\tPRESS ANY KEY TO CONTINUE\n");
+  getch();
+}
 
 
 //RESET THE BOARD
@@ -64,15 +78,17 @@ for(int i=0;i<15;i++){
 //PRINTING THE BOARD
 void PrintBoard(){
   system("cls");
+  gotoxy(72,0);
     int i;
     printf("Current Board : \n");
     for(int i=0;i<15;i++){
-    printf("\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
-    printf("| %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c |",
+    printf("\n\t\t\t\t\t\t|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+    printf("\t\t\t\t\t\t| %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c |",
     board[i][0], board[i][1], board[i][2], board[i][3], board[i][4], board[i][5], board[i][6],board[i][7],
   board[i][8], board[i][9], board[i][10], board[i][11],board[i][12],board[i][13],board[i][14]);// row 0
     }
-    printf("\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
+    
+    printf("\n\t\t\t\t\t\t|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
 }
 
 //FREE SPACES CHECK
@@ -242,17 +258,17 @@ if(m<n){
 void PrintdaWinner(char winner)
 {
   if (winner == PLAYER1){
-printf("\n Player 1 You Win :) !");
+    
+printf("\n\t\t\t\t\t\t\t Congratulations! Player 1, You Win :) !");
 }
 
-else if(winner == BOT){
-    printf("\n Player 1 You Lose :( ");
-  
-} 
 else if(winner==PLAYER2)
 {
-printf("\n Player 2 You Win :) !");
+ 
+printf("\n\t\t\t\t\t\t\t Congratulations! Player 1, You Win :) !");
 }
-else
-printf(" \nTie");
+else{
+  
+  printf("\n\t\t\t\t\t\t\tTie");
+}
 }
