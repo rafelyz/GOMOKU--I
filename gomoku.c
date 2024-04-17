@@ -1,9 +1,8 @@
 #include<stdio.h>
-#include <ctype.h>
+#include<stdlib.h>
 //required consts and board
 char board[15][15];
 const char PLAYER1 = 'X';
-const char BOT = 'O';
 const char PLAYER2 = '0';
 // declared functions
 void ResetBoard();
@@ -21,8 +20,8 @@ int n;
 int main()
 {
     char winner = ' ';
-    char mode;
     ResetBoard();
+    PrintBoard();
     while(winner = ' ' && CheckFreePlaces()!=0){
       Player1:
 Player1Move();
@@ -64,6 +63,7 @@ for(int i=0;i<15;i++){
 
 //PRINTING THE BOARD
 void PrintBoard(){
+  system("cls");
     int i;
     printf("Current Board : \n");
     for(int i=0;i<15;i++){
