@@ -1,61 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include<conio.h>
+#include"design.c"
 //required consts and board
 char board[15][15];
 const char PLAYER1 = 'X';
 const char PLAYER2 = '0';
+int m,n;
 // declared functions
-void gotoxy(int x,int y)
-{
-printf("%c[%d;%df",0x1B,y,x);
-}
-void loading();
-void ResetBoard();
-void PrintBoard();
-void Player1Move();
-void Player2Move();
-char CheckdaWinner();
-void PrintdaWinner(char);
-int CheckFreePlaces();
-int m;
-int n;
-
-//  main body
-int main()
-{
-  loading();
-    char winner = ' ';
-    ResetBoard();
-    PrintBoard();
-    while(winner = ' ' && CheckFreePlaces()!=0){
-      Player1:
-Player1Move();
-//printf("player 1 last move %d %d ", m,n);
-winner = CheckdaWinner();
-if (winner != ' ' || CheckFreePlaces() == 0) 
-            {
-            break;
-            }
-            
- PrintBoard();
- Player2Move();
- //printf("player 2 last move %d %d ", m,n);
-winner = CheckdaWinner();
-if (winner != ' ' || CheckFreePlaces() == 0) 
- {
-break;
-}
-PrintBoard();
- }
-PrintBoard();
-PrintdaWinner(winner);
-    return 0;
-}
 
 //Loading Screen
 void loading(){
   int i,j,l;
+  gomo();
     printf(" \n\t\t\t\t\t\t WELCOME TO GOMOKU\n");
   printf(" \n\n\n\n\n\n\n\n\t\t\t\t\t\t Created by: \n\t\t\t\t\t\t Avignya Gautam \n\t\t\t\t\t\t Balram Sharma Kandel\n");
   printf(" \n\n\n\n\n\n\n\n\n\t\t\t\t\t\t\t\tPRESS ANY KEY TO CONTINUE\n");
@@ -74,13 +31,11 @@ for(int i=0;i<15;i++){
 }}
 
 
-
 //PRINTING THE BOARD
 void PrintBoard(){
   system("cls");
-  gotoxy(72,0);
     int i;
-    printf("Current Board : \n");
+    printf("\t\t\t\t\t\t\t\t      Current Board : \n");
     for(int i=0;i<15;i++){
     printf("\n\t\t\t\t\t\t|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n");
     printf("\t\t\t\t\t\t| %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c | %c |",
@@ -257,18 +212,50 @@ if(m<n){
 //printing winner
 void PrintdaWinner(char winner)
 {
+  congrats();
   if (winner == PLAYER1){
     
-printf("\n\t\t\t\t\t\t\t Congratulations! Player 1, You Win :) !");
+printf("\n\t\t\t\t\t\t\t Player 1, You Win :) !");
 }
 
 else if(winner==PLAYER2)
 {
  
-printf("\n\t\t\t\t\t\t\t Congratulations! Player 1, You Win :) !");
+printf("\n\t\t\t\t\t\t\t Player 1, You Win :) !");
 }
 else{
   
-  printf("\n\t\t\t\t\t\t\tTie");
+  tie();
 }
+}
+
+//  main body
+int main()
+{
+  loading();
+    char winner = ' ';
+    ResetBoard();
+    PrintBoard();
+    while(winner = ' ' && CheckFreePlaces()!=0){
+Player1Move();
+//printf("player 1 last move %d %d ", m,n);
+winner = CheckdaWinner();
+if (winner != ' ' || CheckFreePlaces() == 0) 
+            {
+            break;
+            }
+            
+ PrintBoard();
+ Player2Move();
+ //printf("player 2 last move %d %d ", m,n);
+winner = CheckdaWinner();
+if (winner != ' ' || CheckFreePlaces() == 0) 
+ {
+break;
+}
+PrintBoard();
+ }
+PrintBoard();
+PrintdaWinner(winner);
+    return 0;
 }
