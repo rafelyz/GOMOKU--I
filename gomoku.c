@@ -87,6 +87,7 @@ void PlayerMove(){
 		}
 		else if (board[x][y] != ' ' ){
 			printf("\n INVALID MOVE \n ");
+			continue;
 		}
 		else {
 			board[x][y]= current_player;
@@ -95,8 +96,10 @@ void PlayerMove(){
 			break;
 		}
     } while(1);
-	
+
+	current_player = (current_player == PLAYER1) ? PLAYER2 : PLAYER1;
 }
+
 
 //FUTURE PROSPECT: BOT 
 void BotMove(){
@@ -216,25 +219,19 @@ char CheckdaWinner(){
 //printing winner
 void PrintdaWinner(char winner){
   	congrats();
-  	if (winner == PLAYER1){
-		printf("\n\t\t\t\t\t\t\t Player 1, You Win :) !");
+  	if (CheckFreePlaces() == 0){
+		tie();
 		getch();
 	}
-
-	else if(winner==PLAYER2){
-		printf("\n\t\t\t\t\t\t\t Player 1, You Win :) !");
-		getch();
-	}
-
 	else{
-  		tie();
+		printf("\n\t\t\t\t\t\t\t %c WINS :) !", winner);
 		getch();
 	}
 }
 
 //  main body
 int main() {
-  	
+
 	loading();
     char winner = ' ';
     ResetBoard();
