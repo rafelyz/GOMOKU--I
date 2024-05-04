@@ -240,8 +240,8 @@ int main() {
     ResetBoard();
     PrintBoard();
     
-	while(winner = ' ' && CheckFreePlaces()!=0){
-		Player1Move();
+	while(CheckFreePlaces()!=0){
+		PlayerMove();
 		winner = CheckdaWinner();
 		if (winner != ' ' || CheckFreePlaces() == 0) 
             break;
