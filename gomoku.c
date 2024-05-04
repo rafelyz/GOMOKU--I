@@ -8,8 +8,7 @@
 #define PLAYER2 '0'
 //required consts and board
 char board[15][15];
-const char PLAYER1 = 'X';
-const char PLAYER2 = '0';
+char current_player = PLAYER1;
 int m,n;
 
 
@@ -70,50 +69,32 @@ int CheckFreePlaces(){
 
 // PLAYING MOVES 
 
-//PLAYER 1
-void Player1Move(){
+void PlayerMove(){
 	int x,y;
-
 	do{
-		printf("PLAYER 1:\nEnter the row(1-15):");
+		printf("%c's Turn:\nEnter the row(1-15):", current_player);
 		scanf("%d",&x);
-		printf("PLAYER 1:\nEnter the column(1-15):");
+		printf("%c's Turn:\nEnter the column(1-15):", current_player);
 		scanf("%d",&y);
 		x--; y--;
-
-		if (board[x][y] != ' ' ){
+		if( (x < 0 || x > 14)){
+			printf("\n INVALID MOVE in rows\n ");
+			continue;
+		}
+		else if ((y < 0 || y > 14)){
+			printf("\n INVALID MOVE in columns\n ");
+			continue;
+		}
+		else if (board[x][y] != ' ' ){
 			printf("\n INVALID MOVE \n ");
 		}
 		else {
-			board[x][y]= PLAYER1;
+			board[x][y]= current_player;
 			m = x;
 			n = y;
 			break;
 		}
-    } while(board[x][y] != ' ');
-}
-
-// Player 2
-void Player2Move(){
-   int x,y;
-    do{
-		printf("PLAYER 2:\nEnter the row(1-15):");
-		scanf("%d",&x);
-		printf("PLAYER 2:\nEnter the column(1-15):");
-		scanf("%d",&y);
-		x--;
-		y--;
-		if (board[x][y] != ' ' ){
-			printf("\n INVALID MOVE \n ");
-		}
-		else{
-			board[x][y]= PLAYER2;
-			m = x;
-			n = y;
-			break;
-		}
-
-	} while(board[x][y] != ' ');
+    } while(1);
 	
 }
 
@@ -266,13 +247,6 @@ int main() {
             break;
             
             
-		PrintBoard();
-		Player2Move();
-		winner = CheckdaWinner();
-		
-		if (winner != ' ' || CheckFreePlaces() == 0) {
-			break;
-		}
 		PrintBoard();
  	}
 
