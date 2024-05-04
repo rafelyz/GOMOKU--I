@@ -3,6 +3,9 @@
 #include <conio.h>
 #include "design.c"
 
+
+#define PLAYER1 'X'
+#define PLAYER2 '0'
 //required consts and board
 char board[15][15];
 const char PLAYER1 = 'X';
