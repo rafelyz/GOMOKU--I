@@ -70,13 +70,17 @@ int CheckFreePlaces(){
 // PLAYING MOVES 
 
 void PlayerMove(){
-	int x,y;
+	char a[10], b[10];
 	do{
 		printf("%c's Turn:\nEnter the row(1-15):", current_player);
-		scanf("%d",&x);
+		scanf("%s",a);
 		printf("%c's Turn:\nEnter the column(1-15):", current_player);
-		scanf("%d",&y);
+		scanf("%s",b);
+		
+		int x = atoi(a);
+		int y = atoi(b);
 		x--; y--;
+		
 		if( (x < 0 || x > 14)){
 			printf("\n INVALID MOVE in rows\n ");
 			continue;
